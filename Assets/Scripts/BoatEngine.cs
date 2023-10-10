@@ -4,24 +4,26 @@ using UnityEngine;
 
 public class BoatEngine : MonoBehaviour
 {
+    public float speed = 10.0f;
     private void Update()
     {
         // Boat movement with WASD using easings
         if (Input.GetKey(KeyCode.W))
         {
-            transform.position += transform.forward * Time.deltaTime * 5f;
+            transform.position += transform.forward * Time.deltaTime * speed;
         }
         if (Input.GetKey(KeyCode.S))
         {
-            transform.position -= transform.forward * Time.deltaTime * 5f;
+            transform.position -= transform.forward * Time.deltaTime * speed;
         }
+        // Steering
         if (Input.GetKey(KeyCode.A))
         {
-            transform.position -= transform.right * Time.deltaTime * 5f;
+            transform.Rotate(0.0f, -1.0f, 0.0f);
         }
         if (Input.GetKey(KeyCode.D))
         {
-            transform.position += transform.right * Time.deltaTime * 5f;
+            transform.Rotate(0.0f, 1.0f, 0.0f);
         }
 
     }
