@@ -23,17 +23,8 @@ public class FitToWaterSurface : MonoBehaviour
             // Do the search
             if (targetSurface.ProjectPointOnWaterSurface(searchParameters, out searchResult))
             {
-                // TODO make the thing work
-                // Apply buoyancy exponentially based on depth
-                Rigidbody rb = gameObject.GetComponent<Rigidbody>();
-                if (rb != null)
-                {
-                    float depth = searchResult.candidateLocationWS.y - searchResult.projectedPositionWS.y;
-                    float buoyancy = Mathf.Exp(-depth * 0.5f);
-                    // accelerate upwards
-
-                    rb.AddForce(Vector3.up * buoyancy * 9.81f, ForceMode.Acceleration);
-                }
+                // Move the boat to the surface
+                gameObject.transform.position = searchResult.projectedPositionWS;
 
             }
         }
